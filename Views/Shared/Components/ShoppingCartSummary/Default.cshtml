@@ -1,0 +1,18 @@
+﻿@model int;
+
+@if (Model >= 0)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" style="color: grey !important" asp-controller="Orders" asp-action="ShoppingCart">
+               
+            <div class="row">
+                <i class="bi bi-cart3" style="font-size:23px"></i>
+                @if (Model > 0)
+                {
+                    <p class="rounded-circle" style="border: 1px solid; border-radius: 50% !important; width: 18px; font-size: 11px; text-align: center; color: white; background-color: #28a745; ">@Model</p>
+                }
+            </div>
+        </a>
+    </li>
+    
+}

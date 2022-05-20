@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="dropdown mr-4">
+                <button class="btn btn-outline-success dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-badge"></i> Hello @User.Identity.Name
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="profile-btn">
+                    <li>
+                        <a class="dropdown-item" asp-controller="Orders" asp-action="Index"><i class="bi bi-list ml-3 mr-1"></i>Orders</a>
+                        
+                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Products", new { area = "" })">
+                                <button class="btn">
+                                    <i class="bi bi-box-arrow-in-right ml-4"></i> Logout
+                                </button>
+                            </form>
+
+                    </li>
+                </ul>
+            </div>
+}
+else
+{
+    <a class="btn btn-outline-success my-2 my-sm-0" asp-area="Identity" asp-page="/Account/Login">
+        <i class="bi bi-box-arrow-in-right"></i> Log in
+    </a>
+    <span style="padding: 5px;"></span>
+
+    <a class="btn btn-outline-primary my-2 my-sm-0" asp-area="Identity" asp-page="/Account/Register">
+        <i class="bi bi-person-plus"></i> Register
+    </a>
+}
+        </ul>
+

@@ -1,0 +1,53 @@
+﻿@model KosovoTeam.Models.Coupon
+
+@{
+    ViewData["Title"] = "Details of the player";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Details for @Model.CouponCode</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="form-group text-center">
+                    <img class="border-info rounded-circle" style="max-width: 150px" id="ProfilePicturePreview" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CouponCode" class="control-label"></label>
+                    <input asp-for="CouponCode" class="form-control" readonly />
+                    <span asp-validation-for="CouponCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount" class="control-label"></label>
+                    <input asp-for="Discount" class="form-control" readonly />
+                    <span asp-validation-for="Discount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label"></label>
+                    <input asp-for="StartDate" class="form-control" readonly />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" class="form-control" readonly />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Products.Name" class="control-label"></label>
+                    <input asp-for="Products.Name" class="form-control" readonly />
+                    <span asp-validation-for="Products.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.CouponId">Edit</a>
+                    }
+                    <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
